@@ -1,0 +1,8 @@
+.cartogo-form:focus {
+  box-shadow: none;
+  border-bottom: 1px solid var(--color-p);
+}
+
+.form-btn:hover {
+  background-color: #191a38d1 !important;
+}

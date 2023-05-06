@@ -1,0 +1,116 @@
+.carousel-section {
+  position: relative;
+}
+.carousel-form-section {
+  position: absolute;
+  top: 23%;
+  left: 15%;
+  right: 15%;
+  bottom: 100%;
+}
+.carousel-image {
+  height: 650px !important;
+}
+
+.about-left {
+  margin: 15% 0%;
+}
+@media only screen and (max-width: 992px) {
+  .carousel-form-section {
+    top: 8%;
+    left: 10%;
+    right: 10%;
+  }
+  .carousel-image {
+    height: 900px !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .carousel-form-section {
+    left: 0%;
+    right: 0%;
+  }
+}
+
+/* OfferMenu Start */
+.offer-menu li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0px 5px;
+}
+.offer-menu li button {
+  border: none;
+  background-color: transparent;
+  padding: 4px 18px;
+  position: relative;
+  z-index: 1;
+  color: #fea004 !important;
+  font-size: calc(1.1 * var(--font-size-16));
+}
+.offer-links::after {
+  background-color: #181938;
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  transform: skewX(40deg);
+  z-index: -1;
+  transition: all 0.3s ease 0s;
+}
+.offer-links:hover::after {
+  background-color: #fea004;
+  transform: skewX(-40deg);
+}
+.offer-links:focus::after {
+  background-color: #fea004;
+  transform: skewX(-40deg);
+}
+.offer-links:hover {
+  color: #181938 !important;
+}
+.offer-links:focus {
+  color: #181938 !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .offer-menu li button {
+    border: none;
+    padding: 2px 15px;
+    font-size: calc(0.9 * var(--font-size-16));
+    font-weight: 400 !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .offer-menu li button {
+    border: none;
+    padding: 1px 12px;
+    font-size: calc(0.7 * var(--font-size-16));
+    margin-top: 15px;
+  }
+}
+/* OfferMenu End */
+
+/* Testimonial Start */
+.testimonial-section {
+  padding: 70px 0px;
+  margin-bottom: 100px;
+}
+
+/* Testimonail End */
+
+.testimonial-section {
+  position: relative;
+  z-index: 1;
+}
+.testimonial-section::after {
+  background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+  content: "";
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}

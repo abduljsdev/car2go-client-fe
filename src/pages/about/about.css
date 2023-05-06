@@ -1,0 +1,18 @@
+.herotext h2{
+    font-size: 22px;
+    font-weight: 800;
+}
+.herotext un li{
+    list-style-type: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin: 0px 10px;
+}
+.banner{
+    background: url('https://t4.ftcdn.net/jpg/04/60/44/41/240_F_460444160_PMy73MqfVaZZ3SXwpVh8HndTC7bI48jD.jpg');
+    height: 70vh;
+    width: 100vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+

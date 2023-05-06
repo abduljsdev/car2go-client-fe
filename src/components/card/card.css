@@ -1,0 +1,128 @@
+.product-card {
+  width: 400px;
+  height: 350px;
+  margin: 0px !important;
+  padding: 15px !important;
+}
+
+.product-property {
+  font-size: calc(0.9 * var(--font-size-16)) !important;
+}
+.testimonial-card {
+  width: 300px;
+  height: 300px;
+  background-color: #1819381f;
+}
+.testimonial-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+.testimonial-swiper {
+  padding: 30px !important;
+}
+.testimonial-image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  width: 20px !important;
+  height: 10px !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  background-color: var(--color-s);
+  color: var(--color-p);
+  font-size: calc(1.5 * var(--font-size-16)) !important;
+  padding: 4px;
+}
+
+.blog-card {
+  border: 0px;
+}
+.blog-image {
+  border-radius: 0px !important;
+  height: 280px;
+}
+@media only screen and (max-width: 768px) {
+  .blog-image {
+    height: 350px;
+  }
+}
+/**/
+.product-car-2 {
+  border: 1px solid var(--color-s);
+  border-radius: 5px;
+}
+.man-card {
+  display: flex;
+  align-items: center;
+}
+.main-card img {
+  width: 220px;
+  height: 120px;
+}
+.product-card-2-list {
+  padding: 0px;
+}
+.product-card-2-list li {
+  margin-top: 8px;
+}
+
+.product-card-2-price p {
+  margin: 5px;
+}
+.product-card-2-price-section {
+  margin: 25% 0% 0% 0%;
+}
+
+@media only screen and (max-width: 768px) {
+  .main-card img {
+    width: 180px;
+    height: 100px;
+  }
+  .product-card-2-title {
+    font-size: var(--font-size-16) !important;
+  }
+  .product-card-2-list li {
+    font-size: calc(0.8 * var(--font-size-16));
+  }
+  .product-card-2-list li span {
+    font-size: calc(0.8 * var(--font-size-16));
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .main-card {
+    width: 25% !important;
+  }
+  .product-car-2-properties {
+    width: 50% !important;
+  }
+  .product-card-2-price {
+    width: 30% !important;
+  }
+  .product-card-2-price-section p {
+    font-size: calc(0.7 * var(--font-size-16)) !important;
+  }
+  .product-card-2-price-section button {
+    width: 90% !important;
+    margin-left: 15%;
+    font-size: calc(0.7 * var(--font-size-16)) !important;
+  }
+  .main-card img {
+    width: 120px;
+    height: 100px;
+  }
+  .product-card-2-title {
+    font-size: calc(0.8 * var(--font-size-16)) !important;
+  }
+  .product-card-2-list li {
+    font-size: calc(0.7 * var(--font-size-16));
+  }
+  .product-card-2-list li span {
+    font-size: calc(0.7 * var(--font-size-16));
+  }
+}

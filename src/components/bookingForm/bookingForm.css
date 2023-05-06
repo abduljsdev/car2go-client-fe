@@ -1,0 +1,61 @@
+.booking-form {
+  padding: 10px !important;
+  border-radius: 8px !important;
+  padding-left: 20px !important;
+}
+input[type="text"].booking-form {
+  outline: none;
+  border: 2px solid var(--color-s);
+}
+input[type="text"].booking-form:focus {
+  border: 2px solid var(--color-p);
+}
+
+input[type="date"].booking-form {
+  outline: none;
+  border: 2px solid var(--color-s);
+}
+input[type="date"].booking-form:focus {
+  box-sizing: border-box;
+  border: 2px solid var(--color-p);
+}
+
+input[type="time"].booking-form {
+  outline: none;
+  border: 2px solid var(--color-s);
+}
+input[type="time"].booking-form:focus {
+  box-sizing: border-box;
+  border: 2px solid var(--color-p);
+}
+
+input[type="password"].booking-form {
+  outline: none;
+  border: 2px solid var(--color-s);
+}
+
+input[type="password"].booking-form:focus {
+  box-sizing: border-box;
+  border: 2px solid var(--color-p);
+}
+
+/**/
+
+/* input {
+  width: 100%;
+  padding: 13px;
+  box-sizing: border-box;
+  padding-left: 40px;
+}
+
+.Icon-inside {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  left: 1px;
+  top: 10px;
+  font-size: 22px;
+  padding: 7px 7px;
+} */

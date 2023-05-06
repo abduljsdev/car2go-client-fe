@@ -1,0 +1,15 @@
+option:hover {
+  background-color: yellow;
+}
+
+.my-list li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.car-list-pro-1 {
+  background-color: var(--color-p);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: calc(0.88 * var(--font-size-16)) !important;
+}

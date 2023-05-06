@@ -1,0 +1,103 @@
+.sign-up-section{
+    width: 70%;
+    margin-top: 30px;
+    border:2px solid rgb(160, 160, 160);
+    border-radius: 15px;
+}
+.sign-up-image{
+    height: 100%;
+    width: 100%;
+}
+.sign-up-image img{
+    height: 100%;
+    width: 100%;
+    border-bottom-left-radius: 14px;
+    border-top-left-radius: 14px;
+}
+.login-section{
+    width: 55%;
+    border:2px solid rgb(160, 160, 160);
+    border-radius: 15px;
+    margin-top: 5%;
+}
+.login-image{
+    height: 100%;
+    width: 100%;
+    border-bottom-left-radius: 14px;
+    border-top-left-radius: 14px;
+}
+  
+.forget-password-section{
+    width: 35%;
+    border:2px solid rgb(160, 160, 160);
+    border-radius: 15px;
+    padding: 10px 50px 10px 50px;
+    margin: 5% auto;
+}
+.forget-password-image{
+    width: 80%;
+    height: 150px;
+}
+.update-password-section{
+    width: 40%;
+    border:2px solid rgb(160, 160, 160);
+    border-radius: 15px;
+    padding: 20px 50px 20px 50px;
+    margin: 8% auto;
+}
+.verification-code-section{
+    width: 35%;
+    border:2px solid rgb(160, 160, 160);
+    border-radius: 15px;
+    padding: 30px 60px 30px 60px;
+    margin: 4% auto;
+}
+.verification-code-input{
+    width: 100%;
+    border: none; /* <-- This thing here */
+    border-bottom: 2px solid rgb(133, 133, 133);
+    padding: 8px;
+    text-align: center;
+    
+}
+.auth-form-background{
+    height: 100vh !important;
+} 
+@media only screen and (max-width: 992px) {
+    .sign-up-section{
+        width: 80%;
+    }
+    .login-section{
+        width: 40%;
+    }
+    .forget-password-section{
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .signup-section{
+        width: 100%;
+    }
+    .login-section{
+        width: 90%;
+    }
+    .forgetpassword-section{
+        width: 100%;
+    }
+}
+
+
+/* */
+
+.signupcard-section{
+    margin-top: 12%;
+}
+
+
+/*chage the bootstrap class properties*/
+.form-check-input:checked {
+    background-color:#181938 !important; 
+    border-color:#181938 !important; 
+}
+

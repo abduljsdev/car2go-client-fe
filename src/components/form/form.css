@@ -1,0 +1,44 @@
+.cartogo-form {
+  border-bottom: 1px solid rgb(0, 0, 0);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0px;
+}
+
+input[type="radio"].radio-Button {
+  border: 0px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-s);
+}
+
+.CommonInput-1 {
+  width: 100%;
+  border: none; /* <-- This thing here */
+  border: 1px solid rgb(133, 133, 133);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.commonInput-2 {
+  width: 100%;
+  border: none;
+  border: 1px solid rgb(133, 133, 133);
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+.CommonInput-3 {
+  width: 100%;
+  border: none; /* <-- This thing here */
+  border-bottom: 2px solid rgb(133, 133, 133);
+  padding: 8px;
+  text-align: center;
+}
+select.car-category {
+  border: 2px solid var(--color-s);
+}
+select.car-category:focus {
+  border: 2px solid var(--color-s);
+}

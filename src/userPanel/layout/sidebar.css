@@ -1,0 +1,59 @@
+.PanelLayout-content {
+  width: 80%;
+  margin: 50px 30px;
+}
+.side-bar-section {
+  width: 20%;
+}
+/**/
+.sidebar {
+  line-height: 3;
+  cursor: pointer;
+  padding: 0px !important;
+  margin: 0% !important;
+  width: 20%;
+}
+.sidebar-link {
+  border: 1px solid rgb(255, 255, 255);
+  background-color: #181938;
+  color: #fea004;
+  font-size: 20px;
+  font-weight: 700;
+  transition: 0.4s;
+  display: block;
+  padding: 0px 15px;
+}
+
+.sidebar-link:hover {
+  background-color: #fea004;
+  color: #181938;
+}
+.active {
+  background-color: #fea004;
+  color: #181938;
+}
+
+/**/
+
+.addcar-btn {
+  border-style: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 20px 0px;
+  border-radius: 5px 5px 6px;
+  background-color: #fea004;
+  color: #181938;
+  transition: all ease 0.4s;
+}
+.addcar-btn:hover {
+  color: #fea004;
+  background-color: #181938;
+}
+
+/******/
+
+.form-check-input:focus {
+  box-shadow: none;
+  border: 1px solid #0008f3;
+}
