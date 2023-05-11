@@ -1,103 +1,132 @@
-.sign-up-section{
-    width: 70%;
-    margin-top: 30px;
-    border:2px solid rgb(160, 160, 160);
-    border-radius: 15px;
+.sign-up-section {
+  width: 70%;
+  margin-top: 30px;
+  border: 2px solid rgb(160, 160, 160);
+  border-radius: 15px;
 }
-.sign-up-image{
-    height: 100%;
-    width: 100%;
+.sign-up-image {
+  height: 100%;
+  width: 100%;
 }
-.sign-up-image img{
-    height: 100%;
-    width: 100%;
-    border-bottom-left-radius: 14px;
-    border-top-left-radius: 14px;
+.sign-up-image img {
+  height: 100%;
+  width: 100%;
+  border-bottom-left-radius: 14px;
+  border-top-left-radius: 14px;
 }
-.login-section{
-    width: 55%;
-    border:2px solid rgb(160, 160, 160);
-    border-radius: 15px;
-    margin-top: 5%;
+.sign-up-input {
+  margin-top: 20px;
 }
-.login-image{
-    height: 100%;
-    width: 100%;
-    border-bottom-left-radius: 14px;
-    border-top-left-radius: 14px;
+.login-section {
+  width: 55%;
+  border: 2px solid rgb(160, 160, 160);
+  border-radius: 15px;
+  margin-top: 5%;
 }
-  
-.forget-password-section{
-    width: 35%;
-    border:2px solid rgb(160, 160, 160);
-    border-radius: 15px;
-    padding: 10px 50px 10px 50px;
-    margin: 5% auto;
+.login-image {
+  height: 100%;
+  width: 100%;
+  border-bottom-left-radius: 14px;
+  border-top-left-radius: 14px;
 }
-.forget-password-image{
-    width: 80%;
-    height: 150px;
+
+.forget-password-section {
+  width: 35%;
+  border: 2px solid rgb(160, 160, 160);
+  border-radius: 15px;
+  padding: 10px 50px 10px 50px;
+  margin: 5% auto;
 }
-.update-password-section{
-    width: 40%;
-    border:2px solid rgb(160, 160, 160);
-    border-radius: 15px;
-    padding: 20px 50px 20px 50px;
-    margin: 8% auto;
+.forget-password-image {
+  width: 80%;
+  height: 150px;
 }
-.verification-code-section{
-    width: 35%;
-    border:2px solid rgb(160, 160, 160);
-    border-radius: 15px;
-    padding: 30px 60px 30px 60px;
-    margin: 4% auto;
+.update-password-section {
+  width: 40%;
+  border: 2px solid rgb(160, 160, 160);
+  border-radius: 15px;
+  padding: 20px 50px 20px 50px;
+  margin: 8% auto;
 }
-.verification-code-input{
-    width: 100%;
-    border: none; /* <-- This thing here */
-    border-bottom: 2px solid rgb(133, 133, 133);
-    padding: 8px;
-    text-align: center;
-    
+.verification-code-section {
+  width: 35%;
+  border: 2px solid rgb(160, 160, 160);
+  border-radius: 15px;
+  padding: 30px 60px 30px 60px;
+  margin: 4% auto;
 }
-.auth-form-background{
-    height: 100vh !important;
-} 
+.verification-code-input {
+  width: 100%;
+  border: none; /* <-- This thing here */
+  border-bottom: 2px solid rgb(133, 133, 133);
+  padding: 8px;
+  text-align: center;
+}
+.auth-form-background {
+  height: 100vh !important;
+}
+
+/*change the bootstrap class properties*/
+.form-check-input:checked {
+  background-color: #181938 !important;
+  border-color: #181938 !important;
+}
+
 @media only screen and (max-width: 992px) {
-    .sign-up-section{
-        width: 80%;
-    }
-    .login-section{
-        width: 40%;
-    }
-    .forget-password-section{
-        width: 60%;
-    }
+  .sign-up-section {
+    width: 60%;
+  }
+  .sign-up-image img {
+    display: none;
+  }
+  .login-section {
+    width: 40%;
+  }
+  .login-image {
+    display: none;
+  }
+  .forget-password-section {
+    width: 60%;
+  }
+  .forget-password-image,
+  p {
+    display: none;
+  }
+  .forget-password-section {
+    width: 50%;
+    margin: 15% auto;
+  }
+  .update-password-section {
+    width: 50%;
+    padding: 20px 40px 20px 30px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .sign-up-section {
+    width: 70%;
+  }
+  .login-section {
+    width: 55%;
+  }
+  .forget-password-section {
+    width: 60%;
+    margin: 18% auto;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .signup-section{
-        width: 100%;
-    }
-    .login-section{
-        width: 90%;
-    }
-    .forgetpassword-section{
-        width: 100%;
-    }
+  .sign-up-section {
+    width: 70%;
+  }
+  .login-section {
+    width: 80%;
+  }
+  .forget-password-section {
+    width: 80%;
+    margin: 20% auto;
+  }
+  .update-password-section {
+    width: 70%;
+    padding: 20px 30px 20px 30px;
+  }
 }
-
-
-/* */
-
-.signupcard-section{
-    margin-top: 12%;
-}
-
-
-/*chage the bootstrap class properties*/
-.form-check-input:checked {
-    background-color:#181938 !important; 
-    border-color:#181938 !important; 
-}
-

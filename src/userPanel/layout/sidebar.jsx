@@ -133,17 +133,6 @@ function Sidebar() {
             isActive ? "active" : undefined}`}
           style={{ borderRadius: "0px 0px 5px 5px" }}
           onClick={async () => {
-            navigate("/home")
-          }}>
-          <FontAwesomeIcon className="me-3" icon={faRightToBracket} />
-          Home
-        </NavLink>
-        <NavLink
-          to="/"
-          className={`sidebar-link ${({ isActive }) =>
-            isActive ? "active" : undefined}`}
-          style={{ borderRadius: "0px 0px 5px 5px" }}
-          onClick={async () => {
             localStorage.clear();
             handleLogout()
             navigate("/")

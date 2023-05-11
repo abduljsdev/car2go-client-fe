@@ -4,7 +4,11 @@
   margin: 0px !important;
   padding: 15px !important;
 }
-
+.product-card-image img {
+  width: 300px;
+  height: 170px;
+  border-radius: 5px;
+}
 .product-property {
   font-size: calc(0.9 * var(--font-size-16)) !important;
 }
@@ -56,13 +60,12 @@
   border: 1px solid var(--color-s);
   border-radius: 5px;
 }
-.man-card {
-  display: flex;
-  align-items: center;
-}
+
 .main-card img {
   width: 220px;
-  height: 120px;
+  height: 150px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 .product-card-2-list {
   padding: 0px;

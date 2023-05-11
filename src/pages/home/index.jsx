@@ -2,7 +2,6 @@ import "./home.css";
 import { React } from "react";
 import Banner from "./banner";
 import About from "./about";
-import OfferMenu from "./offerMenu";
 import HotOfferCard from "./hotOfferCard";
 import Testimonial from "./testimonial";
 function Home() {
@@ -10,7 +9,6 @@ function Home() {
     <div style={{ marginTop: "88px", overflowX: "hidden" }}>
       <Banner />
       <About />
-      <OfferMenu />
       <HotOfferCard />
       <Testimonial />
     </div>

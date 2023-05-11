@@ -58,7 +58,6 @@ function BookingForm() {
             })}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
-                    // alert(JSON.stringify(values, null, 2));
                     dispatch(addFormData(values));
                     setSubmitting(false);
                 }, 100);

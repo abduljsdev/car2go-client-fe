@@ -4,10 +4,10 @@ import DriverForm from './driverForm';
 
 function BookVehicles() {
     return (
-        <div>
+        <div style={{ marginTop: "120px" }}>
             <BookCar />
             <DriverForm />
-        </div>
+        </div >
 
     );
 }

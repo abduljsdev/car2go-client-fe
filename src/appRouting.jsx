@@ -7,19 +7,54 @@ import ContactUs from "./pages/contactUs";
 import Blog from "./pages/blog";
 import PageNotFound from "./components/common/pageNotFound";
 import Payment from "./payment";
+import PublicElement from "./auth/publicProtected";
 
 
 function AppRouting() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="home" element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="vehicles" element={<Vehicles />} />
-      <Route path="booking-vehicles/:id" element={<BookVehicles />} />
-      <Route path="contact-us" element={<ContactUs />} />
-      <Route path="blog" element={<Blog />} />
-      <Route path="payment" element={<Payment />} />
+      <Route path="/" element={
+        <PublicElement >
+          <Home />
+        </PublicElement>
+      }
+
+      />
+      <Route path="home" element={
+        <PublicElement name="public">
+          <Home />
+        </PublicElement>
+      } />
+      <Route path="about" element={
+        <PublicElement name="public">
+          <About />
+        </PublicElement>
+      } />
+      <Route path="vehicles" element={
+        <PublicElement name="public">
+          <Vehicles />
+        </PublicElement>
+      } />
+      <Route path="booking-vehicles/:id" element={
+        <PublicElement name="public">
+          <BookVehicles />
+        </PublicElement>
+      } />
+      <Route path="contact-us" element={
+        <PublicElement>
+          <ContactUs />
+        </PublicElement>
+      } />
+      <Route path="blog" element={
+        <PublicElement name="public">
+          <Blog />
+        </PublicElement>
+      } />
+      <Route path="payment" element={
+        <PublicElement name="public">
+          <Payment />
+        </PublicElement>
+      } />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   )

@@ -10,6 +10,7 @@ import { login } from '.././store/authSlice'
 import Spinner from "../components/common/spinner";
 import * as Yup from "yup";
 import "./auth.css"
+import jwtDecode from "jwt-decode";
 
 
 function Login() {
@@ -31,10 +32,11 @@ function Login() {
         email: Yup.string()
           .email("Invalid email")
           .required("Email required"),
+        password: Yup.string()
+          .required("Password required")
       })}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          alert(JSON.stringify(values, null, 2));
           setLoading(true)
           // eslint-disable-next-line
           const response = await postApi({
@@ -54,7 +56,8 @@ function Login() {
           setLoading(false)
           Notifications("Login Successfully", "success", "top-right");
           setSubmitting(false);
-          navigate("/")
+          const currentUser = jwtDecode(token);
+          currentUser.role === 'BUYER' ? navigate('/home') : navigate('/dashboard')
         } catch (err) {
           setLoading(false)
           Notifications("Invalid Credentials", "error", "top-right");
@@ -67,17 +70,17 @@ function Login() {
             <div>
               <Form id="login-form">
                 <Row>
-                  <Col md={6}>
+                  <Col lg={6}>
                     <img src="/images/sign-up-image.jpg" alt="..." className="login-image" />
                   </Col>
-                  <Col md={6} style={{ padding: "0px 25px" }}>
+                  <Col lg={6} style={{ padding: "0px 25px" }}>
                     <Row className="mt-3">
                       <Col md={12}>
                         <h3 className="text-center">Login</h3>
                       </Col>
                     </Row>
                     <Row className="mt-2">
-                      <Col md={12}>
+                      <Col lg={12}>
                         <CommonInput1
                           label="Email"
                           fieldRequired="*"
@@ -108,7 +111,7 @@ function Login() {
                     </Row>
                     <Row className="mt-4">
                       <Col sm={12} className="text-center">
-                        <p>Don`t have an account?<Link to="/sign-up">Sign Up</Link></p>
+                        <p>Don't have an account?<Link to="/sign-up">Sign Up</Link></p>
                       </Col>
                     </Row>
                   </Col>

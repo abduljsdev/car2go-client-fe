@@ -45,7 +45,6 @@ function BookingForm() {
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
           dispatch(addFormData(values));
           navigate('/vehicles')
           setSubmitting(false);

@@ -16,12 +16,9 @@ function ViewAllCars() {
     const [counter, setCounter] = useState(0);
     const [deleteCarId, setDeleteCarId] = useState(null);
     function deleteHandle(id) {
-        console.log(id);
         alert("Car data is deleted");
         setDeleteCarId(id);
         setDeleteCounter(deleteCounter + 1);
-        console.log('11111111111111');
-
     }
     useEffect(() => {
         const deleteCar = async () => {
@@ -93,7 +90,7 @@ function ViewAllCars() {
                             {
                                 icon: () => <FontAwesomeIcon icon={faCompass} />,
                                 tooltip: 'View Detail',
-                                onClick: (event, rowData) => { navigate(`../edit-car/${rowData.id}`) }
+                                onClick: (event, rowData) => { navigate(`../view-car/${rowData.id}`) }
 
                             },
                             {

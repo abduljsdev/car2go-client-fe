@@ -31,7 +31,6 @@ function UpdatePassword() {
             })}
             onSubmit={async (values, { setSubmitting }) => {
                 try {
-                    alert(JSON.stringify(values, null, 2));
                     setLoading(true)
                     // eslint-disable-next-line
                     const response = await postApi({
@@ -56,7 +55,7 @@ function UpdatePassword() {
                             <Form id="update-password-form">
                                 <Row>
                                     <Col>
-                                        <h3>New Password</h3>
+                                        <h4 className="text-center">Update Password</h4>
                                     </Col>
                                 </Row>
                                 <Row className="mt-1">
@@ -64,7 +63,7 @@ function UpdatePassword() {
                                         <p>Please write your new password.</p>
                                     </Col>
                                 </Row>
-                                <Row>
+                                <Row className="mt-3">
                                     <Col md={12}>
                                         <CommonInput1
                                             label="Password"
@@ -74,7 +73,7 @@ function UpdatePassword() {
                                             placeholder="" />
                                     </Col>
                                 </Row>
-                                <Row className="mt-2">
+                                <Row className="mt-4">
                                     <Col md={12}>
                                         <CommonInput1
                                             label="Confirm Password"
@@ -86,7 +85,7 @@ function UpdatePassword() {
                                 </Row>
                                 <Row className="mt-3">
                                     <Col sm={12} className="text-center">
-                                        {loading ? <Spinner /> : <button className="btn-1" type="submit">Conform Password</button>}
+                                        {loading ? <Spinner /> : <button className="btn-1" type="submit">Confirm Password</button>}
                                     </Col>
                                 </Row>
                             </Form>

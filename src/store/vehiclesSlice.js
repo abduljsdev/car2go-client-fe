@@ -6,11 +6,8 @@ const vehiclesSlice = createSlice({
         setVehicles: (state, action) => {
             return action.payload;
         },
-        getVehicles: (state) => {
-            return state;
-        },
     },
 });
 
-export const { setVehicles, getVehicles } = vehiclesSlice.actions;
+export const { setVehicles } = vehiclesSlice.actions;
 export default vehiclesSlice.reducer;

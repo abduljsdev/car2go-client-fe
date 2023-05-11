@@ -14,6 +14,8 @@ import ProtectedRoute from "./auth/protectedRoute";
 import CreateAccount from "./userPanel/common/account/create";
 import UnProtectedRoute from "./auth/unProtectedRoute";
 import AccountUnProtectedElement from "./auth/accountUnProtected";
+import VerificationCode from './auth/verificationCode';
+import UpdatePassword from './auth/updatePassword';
 
 
 function App() {
@@ -28,10 +30,12 @@ function App() {
         } />
         <Route path="sign-up" element={<SignUp />} />
 
-        <Route path="Login" element={
+        <Route path="login" element={
           <UnProtectedRoute><Login /></UnProtectedRoute>
         } />
         <Route path="forget-password" element={<ForgetPassword />} />
+        <Route path="verification-code" element={<VerificationCode />} />
+        <Route path="update-password" element={<UpdatePassword />} />
         <Route path="/create-account" element={
           <ProtectedRoute>
             <AccountUnProtectedElement name="account">

@@ -1,71 +1,77 @@
 import { Row, Col, Container } from "react-bootstrap";
 import ProductCard from "../../components/card/productCard";
+import { useEffect, useState } from "react";
+import { getApi } from "../../services/apiCaller.service";
+
 function HotOfferCard() {
+  const [carDataList, setCarDataList] = useState([]);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await getApi({ url: `${process.env.REACT_APP_BASE_URL}/seller/cars` });
+      setCarDataList(res.data.data)
+      console.log(res.data.data);
+    };
+    getUser();
+  }, [])
+
+  const [filteredCars, setFilteredCars] = useState([]);
+
+  const filterCars = (brandName) => {
+    const filteredCars = carDataList.filter((car) => car.brandName.toLowerCase() === brandName);
+    setFilteredCars(filteredCars);
+  };
+
+  const resetFilter = () => {
+    setFilteredCars(carDataList);
+  };
+
   return (
-    <Container>
-      <Row className="g-5">
-        <Col md={6} xl={4} className="d-flex justify-content-center">
-          <ProductCard
-            path="/images/productCards/card-image-1.png"
-            brand="Toyota Alphard"
-            rentPrice="50.00"
-            model="2018"
-            driveType="Automatic"
-            fuel="14"
-          />
-        </Col>
-        <Col md={6} xl={4} className="d-flex justify-content-center">
-          <ProductCard
-            path="/images/productCards/card-image-2.png"
-            brand="Kia Sportage"
-            rentPrice="60.00"
-            model="2022"
-            driveType="Automatic"
-            fuel="12"
-          />
-        </Col>
-        <Col md={6} xl={4} className="d-flex justify-content-center">
-          <ProductCard
-            path="/images/productCards/card-image-3.png"
-            brand="Toyota Corolla"
-            rentPrice="30.00"
-            model="2010"
-            driveType="Manual"
-            fuel="15"
-          />
-        </Col>
-        <Col md={6} xl={4} className="d-flex justify-content-center">
-          <ProductCard
-            path="/images/productCards/card-image-4.png"
-            brand="Kia Carens"
-            rentPrice="80.00"
-            model="2022"
-            driveType="Automatic"
-            fuel="10"
-          />
-        </Col>
-        <Col md={6} xl={4} className="d-flex justify-content-center">
-          <ProductCard
-            path="/images/productCards/card-image-3.png"
-            brand="Toyota prius"
-            rentPrice="60.00"
-            model="2017"
-            driveType="Automatic"
-            fuel="25"
-          />
-        </Col>
-        <Col md={6} xl={4} className="d-flex justify-content-center">
-          <ProductCard
-            path="/images/productCards/card-image-1.png"
-            brand="Kia Carens"
-            rentPrice="80.00"
-            model="2022"
-            driveType="Automatic"
-            fuel="10"
-          />
+    <>
+      <Row className="container-fluid">
+        <Col className="mb-5 text-center">
+          <ul className="offer-menu">
+            <li>
+              <button className="offer-links" onClick={resetFilter}>ALL BRANDS</button>
+            </li>
+            <li>
+              <button className="offer-links" onClick={() => filterCars('toyota')} >TOYOTA</button>
+            </li>
+            <li>
+              <button className="offer-links" onClick={() => filterCars('honda')}>HONDA</button>
+            </li>
+            <li>
+              <button className="offer-links" onClick={() => filterCars('suzuki')}>SUZUKI</button>
+            </li>
+            <li>
+              <button className="offer-links" onClick={() => filterCars('kia')}>KIA SPOTAGE</button>
+            </li>
+          </ul>
         </Col>
       </Row>
-    </Container>
+      <Container>
+        <Row className="g-5 ">
+
+          {filteredCars.slice(0, 6).map((element) => (
+            <Col md={6} xl={4} className="d-flex justify-content-center">
+              <ProductCard
+                key={element.id}
+                id={element.id}
+                image={element.image}
+                brandName={element.brandName}
+                price={element.price}
+                luggageCapacity={element.luggageCapacity}
+                model={element.model}
+                transmission={element.model}
+                fuelAverage={element.fuelAverage}
+              />
+            </Col>
+
+          ))
+          }
+        </Row>
+      </Container>
+    </>
   );
 }
 

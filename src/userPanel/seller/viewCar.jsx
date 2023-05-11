@@ -57,7 +57,7 @@ function ViewCar() {
                     <Col md={6} lg={4} className="my-4">
                         <div className='d-flex justify-content-between border-primary  p-3 mb-2 bg-white rounded'>
                             <span className='text-secondary fw-bold'>Transmission</span>
-                            <span className="car-list-pro-1">{carData.transmission}</span>
+                            <span className="car-list-pro-1">{carData.transmission === true ? "Yes" : "No"}</span>
                         </div>
                     </Col>
                     <Col md={6} lg={4} className="my-4">
@@ -87,7 +87,7 @@ function ViewCar() {
                     <Col md={6} lg={4} className="my-4">
                         <div className='d-flex justify-content-between border-primary  p-3 mb-2 bg-white rounded'>
                             <span className='text-secondary fw-bold'>Air Condition</span>
-                            <span className="car-list-pro-1">{carData.airCondition}</span>
+                            <span className="car-list-pro-1">{carData.airCondition === true ? "Yes" : "No"}</span>
                         </div>
 
                     </Col>

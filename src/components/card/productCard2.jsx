@@ -1,5 +1,4 @@
 import React from "react";
-import "./card.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { clickBtn } from '../../store/autoClickSlice';
@@ -12,6 +11,8 @@ import {
   faPeopleRoof,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import "./card.css";
+
 
 export default function ProductCard2(props) {
   const dispatch = useDispatch();
@@ -35,8 +36,8 @@ export default function ProductCard2(props) {
 
   return (
     <>
-      <div className="product-car-2 my-5 py-4 d-flex shadow-1">
-        <div className="main-card" style={{ width: "30%" }}>
+      <div className="product-car-2 py-2 my-5 d-flex shadow-1">
+        <div className="main-card" style={{ width: "35%" }}>
           <img
             src={props.image}
             alt="car image not found!"
@@ -44,27 +45,27 @@ export default function ProductCard2(props) {
         </div>
 
         <div className="product-car-2-properties" style={{ width: "45%" }}>
-          <h4 className="text-secondary fw-bold product-card-2-title">
+          <h5 className=" fw-bold product-card-2-title">
             {props.name}
-          </h4>
+          </h5>
           <div className="d-flex">
             <div className="ms-3">
               <ul className="product-card-2-list">
-                <li>
-                  <span className="text-secondary fx-3 me-2">
+                <li className="fs-0">
+                  <span className="fx-1 me-2">
                     <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
                   </span>
                   {props.seats} Seats
                 </li>
-                <li>
-                  <span className=" text-secondary fx-3 me-2">
+                <li className="fs-0">
+                  <span className="  fx-1 me-2">
                     <FontAwesomeIcon icon={faBriefcase}></FontAwesomeIcon>
                   </span>
                   {props.bag} Large bag
                 </li>
 
-                <li>
-                  <span className=" text-secondary fx-3 me-2">
+                <li className="fs-0">
+                  <span className="  fx-1 me-2">
                     <FontAwesomeIcon icon={faCodeCompare}></FontAwesomeIcon>
                   </span>
                   {props.category}
@@ -73,22 +74,22 @@ export default function ProductCard2(props) {
             </div>
             <div className="ms-4">
               <ul className="product-card-2-list">
-                <li>
-                  <span className=" text-secondary fx-3 me-2">
+                <li className="fs-0">
+                  <span className="  fx-1 me-2">
                     <FontAwesomeIcon icon={faPeopleRoof}></FontAwesomeIcon>
                   </span>
                   {props.transmission}
                 </li>
 
-                <li>
-                  <span className=" text-secondary fx-3 me-2">
+                <li className="fs-0">
+                  <span className="  fx-1 me-2">
                     <FontAwesomeIcon icon={faBagShopping}></FontAwesomeIcon>
                   </span>
                   {props.smallBag} Small bag
                 </li>
 
-                <li>
-                  <span className=" text-secondary fx-3 me-2">
+                <li className="fs-0">
+                  <span className="  fx-1 me-2">
                     <FontAwesomeIcon icon={faGasPump}></FontAwesomeIcon>
                   </span>
                   {props.fuelAverage} Fuel Av

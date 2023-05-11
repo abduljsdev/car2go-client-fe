@@ -21,9 +21,7 @@ function ContactForm() {
 
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        alert(JSON.stringify(values, null, 2));
         // try {
-        //     alert(JSON.stringify(values, null, 2));
         //     setLoading(true);
         //     console.log(values);
         //     // eslint-disable-next-line

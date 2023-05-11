@@ -1,7 +1,28 @@
 .create-account-section {
-  width: 60%;
+  width: 55%;
   margin-top: 30px;
   margin-bottom: 30px;
   border: 2px solid rgb(160, 160, 160);
   border-radius: 15px;
+}
+.create-account {
+  padding: 50px;
+}
+
+@media screen and (max-width: 992px) {
+  .create-account-section {
+    width: 75%;
+    padding: 20px;
+  }
+  .create-account {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .create-account-section {
+    width: 90%;
+  }
+  .create-account {
+    padding: 15px;
+  }
 }

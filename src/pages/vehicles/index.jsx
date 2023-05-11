@@ -3,14 +3,12 @@ import { Row, Col, Container } from "react-bootstrap";
 import { getApi } from "../../services/apiCaller.service";
 import { setVehicles } from "../../store/vehiclesSlice";
 import { useDispatch } from 'react-redux';
-import { getFilterVehicles } from "../../store/filterVehiclesSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCodeCompare } from '@fortawesome/free-solid-svg-icons';
 import ProductCard2 from './../../components/card/productCard2';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import BookingForm from "./bookingForm";
 import "./vehicles.css"
-
 
 
 function Vehicles() {
@@ -28,7 +26,6 @@ function Vehicles() {
       dispatch(setVehicles(res.data.data));
     };
     getUser();
-    dispatch(getFilterVehicles())
   }, [])
 
 
@@ -56,9 +53,8 @@ function Vehicles() {
       (!filters.price1 || (item.price > 4999 && item.price <= 7000)) &&
       (!filters.price2 || (item.price >= 7001 && item.price <= 10000)) &&
       (!filters.price3 || (item.price >= 10001 && item.price <= 30000)) &&
-      (!filters.airCondition || item.airCondition === true) &&
-      (!filters.auto || item.auto === "AUTO") &&
-      (!filters.manual || item.manual === "MANUAL") &&
+      (!filters.auto || item.transmission === "AUTO") &&
+      (!filters.manual || item.transmission === "MANUAL") &&
       (!filters.micro || item.category === 'MICRO') &&
       (!filters.hatchback || item.category === 'HATCHBACK') &&
       (!filters.sedan || item.category === 'SEDAN') &&
@@ -78,7 +74,7 @@ function Vehicles() {
               <div
                 className="rounded">
                 <div className="d-flex justify-content-between pt-4 mx-2 border-bottom ">
-                  <h3 className="fw-bold">Filter</h3>
+                  <h5 className="fw-bold">Filter</h5>
                   <p className=" filter text-secondary fw-bold" >
                     Clear all filters
                   </p>
@@ -104,17 +100,6 @@ function Vehicles() {
                       <input name="price3" type="checkbox" checked={filters.price3} onChange={handleFilterChange} className="filter-checkbox" />
                     </span>
                     10000 - 30000
-                  </p>
-                </div>
-
-                <div className="border-bottom mx-3 my-3">
-                  <p className="text-secondary fw-bold">Car Specification</p>
-                  <p>
-                    <span className="mx-2">
-                      <input name="airCondition" type="checkbox" checked={filters.airCondition}
-                        onChange={handleFilterChange} className="filter-checkbox" />
-                    </span>
-                    Air condition
                   </p>
                 </div>
 

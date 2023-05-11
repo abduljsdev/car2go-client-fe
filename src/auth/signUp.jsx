@@ -29,24 +29,29 @@ function SignUp() {
                     .matches(
                         /^[aA-zZ\s]+$/,
                         "Only alphabets allowed for this field "
-                    ),
+                    )
+                    .min(3, "First name at least 3 characters")
+                    .max(40, "First name not great then 40 characters"),
                 lastName: Yup.string()
                     .required("Last Name required")
-                    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed "),
+                    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed ")
+                    .min(3, "Last name at least 3 characters")
+                    .max(40, "Last name not great then 40 characters"),
                 email: Yup.string()
-                    .email("Invalid email   ")
-                    .required("Email required"),
+                    .email("Invalid email")
+                    .required("Email required")
+                    .max(30, "Email not great then 40 characters"),
                 password: Yup.string()
-                    .required("Password required")
                     .matches(
-                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{5,})/,
-                        "Must contain 5 characters, at least one uppercase and one numeric"
-                    ),
+                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                        'Password must be at least 8 characters, contain at least one uppercase letter, one lowercase letter, one number and one special character'
+                    )
+                    .required('Password is required')
+                    .max(30, "Password not great then 40 characters"),
                 confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], "Password must match"),
             })}
             onSubmit={async (values, { setSubmitting }) => {
                 try {
-                    alert(JSON.stringify(values, null, 2));
                     setLoading(true);
                     console.log(values);
                     // eslint-disable-next-line
@@ -79,19 +84,19 @@ function SignUp() {
                         <div>
                             <Form id="sign-up-form">
                                 <Row>
-                                    <Col md={6}>
+                                    <Col lg={6}>
                                         <div className="sign-up-image">
                                             <img src="/images/sign-up-image.jpg" alt="..." />
                                         </div>
                                     </Col>
-                                    <Col md={6} style={{ padding: "0px 25px" }}>
+                                    <Col lg={6} style={{ padding: "0px 25px" }}>
                                         <Row className="mt-3">
-                                            <Col md={12}>
+                                            <Col>
                                                 <h3 className="text-center">Create an Account</h3>
                                             </Col>
                                         </Row>
-                                        <Row>
-                                            <Col md={6} className="mt-2">
+                                        <Row className="gy-3">
+                                            <Col md={6} className="sign-up-input">
                                                 <CommonInput1
                                                     label="First Name"
                                                     fieldRequired="*"
@@ -100,7 +105,7 @@ function SignUp() {
                                                     placeholder="Haider Ali" />
                                             </Col>
 
-                                            <Col md={6} className="mt-2">
+                                            <Col md={6} className="sign-up-input">
                                                 <CommonInput1
                                                     label="Last Name"
                                                     fieldRequired="*"
@@ -109,7 +114,7 @@ function SignUp() {
                                                     placeholder="Smith jon" />
                                             </Col>
                                         </Row>
-                                        <Row className="mt-2">
+                                        <Row className="sign-up-input">
                                             <Col md={12}>
                                                 <CommonInput1
                                                     label="Email"
@@ -119,7 +124,7 @@ function SignUp() {
                                                     placeholder="HaiderAli12@gmail.com" />
                                             </Col>
                                         </Row>
-                                        <Row className="mt-2">
+                                        <Row className="sign-up-input">
                                             <Col md={12}>
                                                 <CommonInput1
                                                     label="Password"
@@ -129,7 +134,7 @@ function SignUp() {
                                                     placeholder="" />
                                             </Col>
                                         </Row>
-                                        <Row className="mt-2">
+                                        <Row className="sign-up-input">
                                             <Col md={12}>
                                                 <CommonInput1
                                                     label="Confirm Password"
@@ -144,7 +149,7 @@ function SignUp() {
                                                 {loading ? <Spinner /> : <button className="btn-1" type="submit">SignUp</button>}
                                             </Col>
                                         </Row>
-                                        <Row className="mt-2">
+                                        <Row className="sign-up-input">
                                             <Col sm={12} className="text-center">
                                                 <p>Already have an account?<Link to="/login"> Log In</Link></p>
                                             </Col>

@@ -2,7 +2,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import JwtReducer from './JwtSlice';
 import authReducer from './authSlice';
 import vehiclesReducer from './vehiclesSlice';
-import filterVehiclesReducer from './filterVehiclesSlice';
 import autoClickBtnReducers from './autoClickSlice';
 import formDataReducer from './bookingFormSlice';
 import { persistReducer } from 'redux-persist'
@@ -19,7 +18,6 @@ let rootReducer = combineReducers({
     vehicles: vehiclesReducer,
     formData: formDataReducer,
     autoClickButton: autoClickBtnReducers,
-    filterVehicles: filterVehiclesReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

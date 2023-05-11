@@ -10,21 +10,16 @@ import "./card.css";
 function ProductCard(props) {
     return (
         <div className="product-card shadow-2 border-secondary-2 rounded-2">
-            <div className="text-center">
-                <img src={props.path}
-                    style={{
-                        width: "270px",
-                        height: "150px",
-                    }}
-                    alt="off not found" />
+            <div className="product-card-image">
+                <img src={props.image} alt="off not found" />
             </div>
             <div className="mt-2 product-card-body">
                 <div>
-                    <h4 className="fw-bolder text-center">{props.brand}</h4>
-                    <h4 className="fw-bolder text-center mt-2 ">
-                        ${props.rentPrice}
+                    <h5 className="fw-bold text-center">{props.brandName.charAt(0).toUpperCase() + props.brandName.slice(1)}</h5>
+                    <h5 className="fw-bold text-center mt-2 ">
+                        {props.price}Rs
                         <span>/ Day</span>
-                    </h4>
+                    </h5>
                 </div>
                 <div>
                     <ul className="my-3 d-flex justify-content-between">
@@ -40,19 +35,19 @@ function ProductCard(props) {
                                 className="me-2 f-1x"
                                 icon={faRobot}
                             ></FontAwesomeIcon>
-                            <span className="product-property">{props.driveType}</span>
+                            <span className="product-property">{props.transmission}</span>
                         </li>
                         <li className="fw-bold">
                             <FontAwesomeIcon
                                 className="me-2 f-1x"
                                 icon={faGaugeHigh}
                             ></FontAwesomeIcon>
-                            <span className="product-property">{props.fuel}Kmpl</span>
+                            <span className="product-property">{props.fuelAverage}Kmpl</span>
                         </li>
                     </ul>
                 </div>
                 <div className="mt-4" >
-                    <Link className="offer-btn-1">View Detail</Link>
+                    <Link to='/vehicles' className="offer-btn-1">View Detail</Link>
                 </div>
             </div>
         </div>

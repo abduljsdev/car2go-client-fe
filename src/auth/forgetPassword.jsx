@@ -28,7 +28,6 @@ function ForgetPassword() {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         try {
-          // alert(JSON.stringify(values, null, 2));
           setLoading(true)
           // eslint-disable-next-line
           const response = await postApi({
@@ -66,7 +65,7 @@ function ForgetPassword() {
                     <p>Please write your email to receive a confirmation code to set new password</p>
                   </Col>
                 </Row>
-                <Row>
+                <Row className="mt-3">
                   <Col>
                     <CommonInput1
                       label="Email"

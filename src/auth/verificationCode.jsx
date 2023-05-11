@@ -26,7 +26,6 @@ function VerificationCode() {
             })}
             onSubmit={async (values, { setSubmitting }) => {
                 try {
-                    alert(JSON.stringify(values, null, 2));
                     setLoading(true)
                     // eslint-disable-next-line
                     const response = await postApi({
