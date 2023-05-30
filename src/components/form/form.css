@@ -42,3 +42,14 @@ select.car-category {
 select.car-category:focus {
   border: 2px solid var(--color-s);
 }
+
+.contact-form-text-area {
+  border-radius: 5px;
+  outline: none;
+  border: 2px solid var(--color-s);
+}
+
+.contact-form-text-area:focus {
+  outline: none;
+  border: 2px solid var(--color-p);
+}

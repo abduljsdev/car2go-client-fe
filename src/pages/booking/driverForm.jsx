@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { Formik, Form } from "formik";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CommonInput } from "../../components/bookingForm/commonInput";
 import { useSelector } from "react-redux";
 import { postApi } from '../../services/apiCaller.service'
 import { Notifications } from "../../components/common/notifications";
 import Spinner from "../../components/common/spinner"
 import * as Yup from "yup";
+import { addFormData } from "../../store/bookingFormSlice";
+import { useDispatch } from "react-redux";
+import moment from 'moment';
+
 
 
 
 function DriverForm() {
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
     const [forDataValues, setFormDataValues] = useState({});
     const formObj = useSelector((state) => state.formData);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const params = useParams();
+
     useEffect(() => {
         setFormDataValues(formObj.formObj);
     }, [])
+
     return (
         <Formik
             initialValues={{
@@ -35,15 +43,28 @@ function DriverForm() {
                     .matches(
                         /^[aA-zZ\s]+$/,
                         "Only alphabets allowed for this field "
-                    ),
+                    )
+                    .min(3, "First name at least 3 characters")
+                    .max(40, "First name not great then 40 characters"),
                 lastName: Yup.string()
                     .required("Last Name required")
-                    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed "),
-                cnic: Yup.string().required('CNIC is required'),
+                    .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed ")
+                    .min(3, "Last name at least 3 characters")
+                    .max(40, "Last name not great then 40 characters"),
+                cnic: Yup.string()
+                    .matches(/^[0-9+]{5}-[0-9+]{7}-[0-9]{1}$/, 'Invalid CNIC number format')
+                    .min(15, 'CNIC number must be at least 15 digits')
+                    .max(15, 'CNIC number cannot exceed 15 digits')
+                    .required('CNIC number is required'),
                 license: Yup.string().required('Driver license required'),
 
             })}
             onSubmit={async (values, { setSubmitting }) => {
+                const isPickupDateSmaller = moment(formObj.formObj.pickUpDate).isAfter(formObj.formObj.returnDate);
+                if (isPickupDateSmaller) {
+                    Notifications("Invalid Date", "error", "top-right");
+                    return navigate("/vehicles");
+                }
                 try {
                     setLoading(true);
                     // eslint-disable-next-line
@@ -65,17 +86,18 @@ function DriverForm() {
                     setLoading(false)
 
                     navigate("/home");
+                    dispatch(addFormData({}));
+
 
                     Notifications("Your Booking is done!", "error", "top-right");
 
                     setSubmitting(false);
                 } catch (err) {
                     setLoading(false)
-                    navigate("/vehicles");
                     if (!err?.response) {
                         Notifications("No Server response", "error", "top-right");
                     } else if (err.response.data.statusCode === 409) {
-                        Notifications("Car already register", "error", "top-right");
+                        Notifications("Driver is ready booked", "error", "top-right");
                     }
 
                 }
@@ -131,12 +153,12 @@ function DriverForm() {
                             <Row className="my-3">
                                 <Col className="d-flex justify-content-center my-5 ">
                                     <div>
-                                        {loading ? <Spinner /> : <button className="form-btn fw-bold" type="submit">
+                                        {loading ? <Spinner /> : <button className="form-btn" type="submit">
                                             Confirm Booking
                                         </button>}
                                     </div>
                                     <div className="mx-4 border">
-                                        <button className="form-btn fw-bold">
+                                        <button className="form-btn">
                                             Cancel
                                         </button>
                                     </div>

@@ -4,6 +4,10 @@
   margin: 0px !important;
   padding: 15px !important;
 }
+.product-card-image {
+  display: flex;
+  justify-content: center;
+}
 .product-card-image img {
   width: 300px;
   height: 170px;

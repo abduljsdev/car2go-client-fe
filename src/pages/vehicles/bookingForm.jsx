@@ -4,11 +4,11 @@ import { Formik, Form } from "formik";
 import { CommonInput } from "../../components/bookingForm/commonInput";
 import { CommonDatePicker } from "../../components/bookingForm/datePicker";
 import { useSelector, useDispatch } from "react-redux";
-import { unClickBtn } from '../../store/autoClickSlice';
 import { addFormData } from '../../store/bookingFormSlice';
+import { validateDate } from "../../store/validateDateSlice";
 import { addDays } from 'date-fns'
 import * as Yup from "yup";
-
+import { unClickBtn } from "../../store/autoClickSlice";
 
 function BookingForm() {
     const [pickUpDate, setPickUpDate] = useState(new Date());
@@ -16,25 +16,27 @@ function BookingForm() {
     const [pickUpTime, setPickUpTime] = useState(new Date());
     const [returnTime, setReturnTime] = useState(new Date());
 
+
     const submitButtonRef = useRef(null);
     const dispatch = useDispatch();
-    const linkState = useSelector((state) => state.autoClickButton);
     const formObj = useSelector((state) => state.formData);
-    const formDataValues = formObj.formObj;
 
-    if (submitButtonRef.current && linkState.clickBtn === true) {
+    const autoClick = useSelector((state) => state.autoClickButton);
+    const formDataValues = formObj.formObj;
+    if (submitButtonRef.current && autoClick.clickBtn) {
         submitButtonRef.current.click();
-        dispatch(unClickBtn());
+        dispatch(unClickBtn())
     }
     useEffect(() => {
         if (formDataValues.pickUpLocation !== undefined) {
+
             setPickUpDate(formDataValues.pickUpDate)
             setReturnDate(formDataValues.returnDate);
             setPickUpTime(formDataValues.pickUpTime);
             setReturnTime(formDataValues.returnTime);
         }
-    }, [])
 
+    }, [])
 
     return (
         <Formik
@@ -50,17 +52,14 @@ function BookingForm() {
             }}
             validationSchema={Yup.object({
                 pickUpLocation: Yup.string().required("choose a pick up location"),
-                // pickUpDate: Yup.string().required("choose a pick up date"),
-                // pickUpTime: Yup.string().required("choose a pick up time"),
-                // returnLocation: Yup.string().required("choose a return location"),
-                // returnDate: Yup.string().required("choose a return date"),
-                // returnTime: Yup.string().required("choose a return time")
+
             })}
             onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    dispatch(addFormData(values));
-                    setSubmitting(false);
-                }, 100);
+                // setTimeout(() => {
+                dispatch(addFormData(values));
+                dispatch(validateDate())
+                setSubmitting(false);
+                // }, 100);
             }}
         >
             {({ errors, touched, setFieldValue }) => (
@@ -110,6 +109,7 @@ function BookingForm() {
                                         timeIntervals={15}
                                         timeCaption="Time"
                                         dateFormat="h:mm aa"
+
                                     />
 
                                 </Col>

@@ -23,8 +23,8 @@ function ViewCar() {
 
     return (
         <div className='px-5'>
-            <div>
-                <img className='w-100 h-100 pt-5' src={carData.image} />
+            <div className='pt-5 view-car-image'>
+                <img className='' src={carData.image} />
             </div>
             <div>
                 <h3 className='my-5'>Details</h3>

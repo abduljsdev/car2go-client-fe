@@ -12,6 +12,7 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import "./card.css";
+import { unValidateDate } from "../../store/validateDateSlice";
 
 
 export default function ProductCard2(props) {
@@ -20,18 +21,18 @@ export default function ProductCard2(props) {
   const formObj = useSelector((state) => state.formData);
   let isLoggedIn = useSelector((state) => state.auth);
   isLoggedIn = isLoggedIn.isLoggedIn
-
   const handleChange = (event) => {
     dispatch(clickBtn());
-    setTimeout(() => {
-      if (!isLoggedIn) {
-        return navigate('/login')
-      }
-      if (formObj.formObj.pickUpLocation) {
-        return navigate(`/booking-vehicles/${event.target.id}`)
-      }
-      navigate(`/vehicles`)
-    }, 400);
+    // setTimeout(() => {
+    if (!isLoggedIn) {
+      return navigate('/login')
+    }
+    if (formObj.formObj.pickUpLocation) {
+      dispatch(unValidateDate())
+      return navigate(`/booking-vehicles/${event.target.id}`)
+    }
+    navigate(`/vehicles`)
+    // }, 200);
   }
 
   return (

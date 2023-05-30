@@ -24,11 +24,17 @@ function ChangePassword() {
         email: email,
         oldPassword: "",
         password: "",
-        confirmNewPassword: "",
+        confirmPassword: "",
       }}
       validationSchema={Yup.object({
-
-
+        password: Yup.string()
+          .matches(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            'Password must be at least 8 characters, contain at least one uppercase letter, one lowercase letter, one number and one special character'
+          )
+          .required('Password is required')
+          .max(30, "Password not great then 40 characters"),
+        confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], "Password must match"),
 
       })}
       onSubmit={async (values, { setSubmitting }) => {
@@ -42,7 +48,7 @@ function ChangePassword() {
           }
           );
           setLoading(false)
-          Notifications("New car added Successfully", "success", "top-right");
+          Notifications("Password Change Successfully", "success", "top-right");
           navigate("../view-account");
 
           setSubmitting(false);
@@ -51,8 +57,7 @@ function ChangePassword() {
           if (!err?.response) {
             Notifications("No Server response", "error", "top-right");
           } else {
-            console.log(err);
-            Notifications("New car not added ", "error", "top-right");
+            Notifications(`${err.response.data.message}`, "error", "top-right");
           }
         }
       }}
@@ -86,15 +91,15 @@ function ChangePassword() {
                   fieldRequired="*"
                   name="password"
                   type="password"
-                />
+                  placeholder="" />
               </Col>
             </Row>
             <Row className="mt-5 gx-5">
               <Col md={12}>
                 <CommonInput
-                  label="Confirm New Password"
+                  label="Confirm Password"
                   fieldRequired="*"
-                  name="confirmNewPassword"
+                  name="confirmPassword"
                   type="password"
                 />
               </Col>

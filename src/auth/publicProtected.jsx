@@ -7,15 +7,14 @@ function PublicElement({ children, name }) {
     const token = localStorage.getItem('user-token')
     if (token) {
         const currentUser = jwtDecode(token)
-        if ((currentUser.account.firstName === '' || currentUser.account.firstName === undefined)) {
+        if (((currentUser.account.firstName === '' || currentUser.account.firstName === undefined) && (currentUser.role === 'SELLER'))) {
             useEffect(() => {
                 navigate('/create-account')
             }, []);
-        }
-        if (currentUser.role === 'SELLER') {
-            useEffect(() => {
+        } else {
+            if (currentUser.role === 'SELLER') {
                 navigate('/dashboard')
-            }, []);
+            }
         }
         if (currentUser.role === 'BUYER') {
             return (

@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { Notifications } from "../components/common/notifications";
 import { postApi } from "../services/apiCaller.service";
 import Spinner from "../components/common/spinner";
+import { CommonRadio } from "../components/form/commonRadio";
 
 function SignUp() {
     const [loading, setLoading] = useState(false);
@@ -20,8 +21,7 @@ function SignUp() {
                 email: "",
                 password: "",
                 confirmPassword: "",
-                role: "SELLER"
-
+                role: ""
             }}
             validationSchema={Yup.object({
                 firstName: Yup.string()
@@ -49,11 +49,11 @@ function SignUp() {
                     .required('Password is required')
                     .max(30, "Password not great then 40 characters"),
                 confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], "Password must match"),
+                role: Yup.string().required('Please select a role type'),
             })}
             onSubmit={async (values, { setSubmitting }) => {
                 try {
                     setLoading(true);
-                    console.log(values);
                     // eslint-disable-next-line
                     const response = await postApi({
                         url: `${process.env.REACT_APP_BASE_URL}/auth/register`,
@@ -79,7 +79,7 @@ function SignUp() {
             }}
         >
             {({ errors, touched, setFieldValue }) => (
-                <div>
+                <div className="pb-3">
                     <div className="sign-up-section mx-auto">
                         <div>
                             <Form id="sign-up-form">
@@ -142,6 +142,24 @@ function SignUp() {
                                                     name="confirmPassword"
                                                     type="password"
                                                     placeholder="" />
+                                            </Col>
+                                        </Row>
+                                        <Row className="sign-up-input">
+                                            <Col md={6}>
+                                                <CommonRadio
+                                                    label="Seller"
+                                                    name="role"
+                                                    value="SELLER"
+                                                    type="radio"
+                                                />
+                                            </Col>
+                                            <Col md={6}>
+                                                <CommonRadio
+                                                    label="Buyer"
+                                                    name="role"
+                                                    value="BUYER"
+                                                    type="radio"
+                                                />
                                             </Col>
                                         </Row>
                                         <Row className="mt-3">

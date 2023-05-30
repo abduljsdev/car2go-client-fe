@@ -135,7 +135,6 @@ function AddCar() {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             setLoading(true);
-            console.log(values);
             // eslint-disable-next-line
             const response = await postApi({
               url: `${process.env.REACT_APP_BASE_URL}/seller/add-car`,

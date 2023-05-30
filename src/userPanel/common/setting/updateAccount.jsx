@@ -12,6 +12,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import jwtDecode from "jwt-decode";
 import { getApi, patchApi } from "../../../services/apiCaller.service";
+import { CommonDatePicker } from "../../../components/bookingForm/datePicker";
+import { subMonths } from 'date-fns';
 
 
 function UpdateAccount() {
@@ -21,17 +23,23 @@ function UpdateAccount() {
   const id = currentUser.account.id;
   const [accountData, setAccountData] = useState({});
   const [loading, setLoading] = useState(false);
+  const [dateOfBirth, setdateOfBirth] = useState(subMonths(new Date(), 216));
+
   useEffect(() => {
     const getAccount = async () => {
       const res = await getApi({ url: `${process.env.REACT_APP_BASE_URL}/account/${id}` });
       const data = res.data.data;
       setAccountData(data);
     };
-
-
     getAccount();
-    // eslint-disable-next-line
   }, [])
+  const extractDate = (datetimeString) => {
+    const dateObj = new Date(datetimeString);
+    const year = dateObj.getFullYear();
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if necessary
+    const day = dateObj.getDate().toString().padStart(2, '0'); // Add leading zero if necessary
+    return `${year}-${month}-${day}`;
+  };
   return (
     <Formik
       enableReinitialize={true}
@@ -41,7 +49,7 @@ function UpdateAccount() {
         city: accountData?.city,
         street: accountData?.street,
         phoneNumber: accountData?.phoneNumber,
-        dateOfBirth: accountData?.dateOfBirth,
+        dateOfBirth: extractDate(accountData?.dateOfBirth),
         cnicNumber: accountData?.cnicNumber
       }}
       validationSchema={Yup.object({
@@ -65,7 +73,7 @@ function UpdateAccount() {
           }
           );
           setLoading(false)
-          Notifications("New car added Successfully", "success", "top-right");
+          Notifications("Account Updated Successfully", "success", "top-right");
           navigate("../view-account");
 
           setSubmitting(false);
@@ -74,8 +82,7 @@ function UpdateAccount() {
           if (!err?.response) {
             Notifications("No Server response", "error", "top-right");
           } else {
-            console.log(err);
-            Notifications("New car not added ", "error", "top-right");
+            Notifications("Account Not Updated ", "error", "top-right");
           }
         }
       }}
@@ -115,11 +122,16 @@ function UpdateAccount() {
             <Row className="mt-5 gx-5">
               <Col>
                 <Col md={12}>
-                  <CommonInput
-                    label="Date Of Birth"
+                  <CommonDatePicker
+                    label=""
                     fieldRequired="*"
-                    name="dateOfBirth"
-                    type="text"
+                    selected={dateOfBirth}
+                    onChange={(date) => {
+                      setdateOfBirth(date)
+                      setFieldValue("dateOfBirth", dateOfBirth);
+                    }}
+                    minDate={subMonths(new Date(), 800)}
+                    maxDate={subMonths(new Date(), 100)}
                   />
                 </Col>
               </Col>

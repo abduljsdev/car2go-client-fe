@@ -11,6 +11,7 @@ import Spinner from "../components/common/spinner";
 import * as Yup from "yup";
 import "./auth.css"
 import jwtDecode from "jwt-decode";
+import { CommonRadio } from "../components/form/commonRadio";
 
 
 function Login() {
@@ -25,15 +26,15 @@ function Login() {
       initialValues={{
         email: "",
         password: "",
-        role: "SELLER"
-
+        role: ""
       }}
       validationSchema={Yup.object({
         email: Yup.string()
           .email("Invalid email")
           .required("Email required"),
         password: Yup.string()
-          .required("Password required")
+          .required("Password required"),
+        role: Yup.string().required('Please select a role type'),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         try {
@@ -57,7 +58,16 @@ function Login() {
           Notifications("Login Successfully", "success", "top-right");
           setSubmitting(false);
           const currentUser = jwtDecode(token);
-          currentUser.role === 'BUYER' ? navigate('/home') : navigate('/dashboard')
+          if (currentUser.role === 'BUYER') {
+            navigate('/home')
+          } else {
+            if (currentUser.account.firstName === '' || currentUser.account.firstName === undefined) {
+              navigate('/create-account')
+            } else {
+              navigate('/dashboard')
+
+            }
+          }
         } catch (err) {
           setLoading(false)
           Notifications("Invalid Credentials", "error", "top-right");
@@ -98,12 +108,31 @@ function Login() {
                           type="password"
                           placeholder="" />
                       </Col>
-                      <Row className="mt-4">
-                        <Col sm={12} className="text-end">
-                          <Link to="/forget-password" style={{ color: "red" }}>Forget Password?</Link>
-                        </Col>
-                      </Row>
                     </Row>
+                    <Row className="mt-3">
+                      <Col md={6}>
+                        <CommonRadio
+                          label="Seller"
+                          name="role"
+                          value="SELLER"
+                          type="radio"
+                        />
+                      </Col>
+                      <Col md={6}>
+                        <CommonRadio
+                          label="Buyer"
+                          name="role"
+                          value="BUYER"
+                          type="radio"
+                        />
+                      </Col>
+                    </Row>
+                    <Row className="mt-4">
+                      <Col sm={12} className="text-end">
+                        <Link to="/forget-password" style={{ color: "red" }}>Forget Password?</Link>
+                      </Col>
+                    </Row>
+
                     <Row className="mt-4">
                       <Col sm={12} className="text-center">
                         {loading ? <Spinner /> : <button className="btn-1" type="submit">Login</button>}

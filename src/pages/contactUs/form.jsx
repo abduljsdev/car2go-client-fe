@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { Formik, Form } from "formik";
-// import { Link, useNavigate } from "react-router-dom";
-import * as Yup from "yup";
 import { CommonInput } from "../../components/bookingForm/commonInput";
+
+import { Notifications } from "../../components/common/notifications";
+import { postApi } from "../../services/apiCaller.service";
+import Spinner from "../../components/common/spinner";
+import * as Yup from "yup";
 import './contact.css';
+import CommonTextArea from "../../components/form/commonTextArea";
+
+
 
 function ContactForm() {
-  // const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   return (
     <Formik
       initialValues={{
@@ -18,34 +23,48 @@ function ContactForm() {
 
       }}
       validationSchema={Yup.object({
-
+        name: Yup.string()
+          .required("Name is required")
+          .matches(
+            /^[aA-zZ\s]+$/,
+            "Only alphabets allowed for this field "
+          )
+          .min(3, "Last name at least 3 characters")
+          .max(40, "First name not great then 40 characters"),
+        email: Yup.string()
+          .email("Invalid email")
+          .required("Email required")
+          .max(30, "Email not great then 40 characters"),
+        message: Yup.string()
+          .required("Name is required")
+          .matches(
+            /^[aA-zZ\s]+$/,
+            "Only alphabets allowed for this field "
+          )
+          .min(10, "First name at least 10 characters")
+          .max(150, "First name not great then 150 characters"),
       })}
-      onSubmit={async (values, { setSubmitting }) => {
-        // try {
-        //     setLoading(true);
-        //     console.log(values);
-        //     // eslint-disable-next-line
-        //     const response = await postApi({
-        //         url: `${process.env.REACT_APP_BASE_URL}/auth/register`,
-        //         method: "POST",
-        //         body: values
-        //     }
-        //     );
-        //     setLoading(false)
-        //     Notifications("Registered Successfully", "success", "top-right");
-        //     // navigate("/login");
-
-        //     setSubmitting(false);
-        // } catch (err) {
-        //     setLoading(false)
-        //     if (!err?.response) {
-        //         Notifications("No Server response", "error", "top-right");
-        //     } else if (err.response?.status === 409) {
-        //         Notifications("User already register", "error", "top-right");
-        //     } else {
-        //         Notifications("Login Failed", "error", "top-right");
-        //     }
-        // }
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        try {
+          setLoading(true);
+          const response = await postApi({
+            url: `${process.env.REACT_APP_BASE_URL}/user/contact-us`,
+            method: "POST",
+            body: values
+          }
+          );
+          setLoading(false)
+          resetForm({ values: '' })
+          Notifications("Message Send Successfully", "success", "top-right");
+          setSubmitting(false);
+        } catch (err) {
+          setLoading(false)
+          if (!err?.response) {
+            Notifications("No Server response", "error", "top-right");
+          } else {
+            Notifications("Message Not Send", "error", "top-right");
+          }
+        }
       }}
     >
       {({ errors, touched, setFieldValue }) => (
@@ -70,22 +89,19 @@ function ContactForm() {
                   <CommonInput
                     label="Your Email"
                     fieldRequired=""
-                    name="emil"
+                    name="email"
                     type="text"
                   />
                 </Col>
               </Row>
               <Row className="my-5">
                 <Col md={12}>
-                  <label for="textarea" >Your Message</label>
-                  <textarea name="message" className="contact-form-text-area w-100"></textarea>
+                  <CommonTextArea label="Write Message" name="message" />
                 </Col>
               </Row>
               <Row className="my-3">
                 <Col>
-                  <button className="form-btn" type="submit">
-                    Submit
-                  </button>
+                  {loading ? <Spinner /> : <button className="form-btn" type="submit">Send Message</button>}
                 </Col>
               </Row>
             </Form>

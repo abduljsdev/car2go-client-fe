@@ -4,12 +4,22 @@ import authReducer from './authSlice';
 import vehiclesReducer from './vehiclesSlice';
 import autoClickBtnReducers from './autoClickSlice';
 import formDataReducer from './bookingFormSlice';
-import { persistReducer } from 'redux-persist'
+import validateDataReducer from './validateDateSlice';
+import userProfileReducer from './userProfileSlice';
+
+
+import {
+    persistReducer,
+
+} from 'redux-persist'
+
 import storage from 'redux-persist/lib/storage'
+
 
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['formData'],
 }
 
 let rootReducer = combineReducers({
@@ -18,11 +28,17 @@ let rootReducer = combineReducers({
     vehicles: vehiclesReducer,
     formData: formDataReducer,
     autoClickButton: autoClickBtnReducers,
+    dateValidator: validateDataReducer,
+    userProfile: userProfileReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const store = configureStore({
     reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 })
 export default store;

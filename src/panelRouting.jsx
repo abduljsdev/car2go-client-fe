@@ -1,9 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import PageNotFound from "./components/common/pageNotFound";
-import BookedCars from "./userPanel/buyer/bookedCar";
 import ViewAccount from "./userPanel/common/account/view";
 import AddCar from "./userPanel/seller/addCar";
-import RentedCar from "./userPanel/seller/rentedCar";
+import ViewAllRentedCar from "./userPanel/seller/rentedCar/viewAllRentedCar";
 import ViewAllCars from "./userPanel/seller/viewAllCars";
 import UpdateAccount from './userPanel/common/setting/updateAccount';
 import ChangePassword from "./userPanel/common/security/changePassword";
@@ -12,6 +11,9 @@ import ProtectedRoute from "./auth/protectedRoute";
 import UserElement from "./auth/userProtected";
 import EditCar from "./userPanel/seller/editCar";
 import ViewCar from "./userPanel/seller/viewCar";
+import ViewRentedCar from "./userPanel/seller/rentedCar/viewRentedCar";
+import ViewBookedCar from "./userPanel/buyer/viewBookedCar";
+import BookedCars from "./userPanel/buyer/viewAll";
 
 function PanelRouting() {
   return (
@@ -43,7 +45,14 @@ function PanelRouting() {
       <Route path="rented-cars" element={
         <ProtectedRoute>
           <UserElement name='seller'>
-            <RentedCar />
+            <ViewAllRentedCar />
+          </UserElement>
+        </ProtectedRoute>
+      } />
+      <Route path="view-rented-car/:id" element={
+        <ProtectedRoute>
+          <UserElement name='seller'>
+            <ViewRentedCar />
           </UserElement>
         </ProtectedRoute>
       } />
@@ -68,6 +77,14 @@ function PanelRouting() {
           </UserElement>
         </ProtectedRoute>
       } />
+      <Route path="view-booked-car/:id" element={
+        <ProtectedRoute>
+          <UserElement name='buyer'>
+            <ViewBookedCar />
+          </UserElement>
+        </ProtectedRoute>
+      } />
+
       <Route path="update-account" element={
         <ProtectedRoute>
           <UpdateAccount />

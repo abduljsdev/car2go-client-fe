@@ -10,7 +10,6 @@ function HotOfferCard() {
     const getUser = async () => {
       const res = await getApi({ url: `${process.env.REACT_APP_BASE_URL}/seller/cars` });
       setCarDataList(res.data.data)
-      console.log(res.data.data);
     };
     getUser();
   }, [])

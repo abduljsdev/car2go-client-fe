@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { Col, Row } from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import { getApi } from '../../../services/apiCaller.service';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -11,16 +12,28 @@ function ViewAccount() {
     const currentUser = jwtDecode(token);
     const id = currentUser.id;
     const [user, setUser] = useState({});
+
+    const dispatch = useDispatch();
+
     useEffect(() => {
         const getUser = async () => {
             const res = await getApi({ url: `${process.env.REACT_APP_BASE_URL}/user/${id}` });
             setUser(res.data.data);
         };
-
-
         getUser();
         // eslint-disable-next-line
     }, [])
+
+
+    const extractDate = (datetimeString) => {
+        const dateObj = new Date(datetimeString);
+        const year = dateObj.getFullYear();
+        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if necessary
+        const day = dateObj.getDate().toString().padStart(2, '0'); // Add leading zero if necessary
+        return `${year}-${month}-${day}`;
+    };
+
+
     if (user.firstName) {
         return (
             <>
@@ -37,31 +50,31 @@ function ViewAccount() {
                     <tbody>
                         <tr>
                             <td className='py-4 ps-4 fw-bold'>First Name </td>
-                            <td className='py-4'>{user.account.firstName}</td>
+                            <td className='py-4'>{user?.account?.firstName}</td>
                         </tr>
                         <tr>
                             <td className='py-4 ps-4 fw-bold'>last Name </td>
-                            <td className='py-4'>{user.account.lastName}</td>
+                            <td className='py-4'>{user?.account?.lastName}</td>
                         </tr>
                         <tr>
                             <td className='py-4 ps-4 fw-bold'>Email</td>
-                            <td className='py-4'>{user.email}</td>
+                            <td className='py-4'>{user?.email}</td>
                         </tr>
                         <tr>
                             <td className='py-4 ps-4 fw-bold'>Phone</td>
-                            <td className='py-4'>{user.account.phoneNumber}</td>
+                            <td className='py-4'>{user?.account?.phoneNumber}</td>
                         </tr>
                         <tr>
                             <td className='py-4 ps-4 fw-bold'>Date Of Birth</td>
-                            <td className='py-4'>{user.account.dateOfBirth}</td>
+                            <td className='py-4'>{extractDate(user?.account?.dateOfBirth)}</td>
                         </tr>
                         <tr>
                             <td className='py-4 ps-4 fw-bold'>CNIC Number</td>
-                            <td className='py-4'>{user.account.cnicNumber}</td>
+                            <td className='py-4'>{user?.account?.cnicNumber}</td>
                         </tr>
                         <tr>
                             <td className='py-4 ps-4 fw-bold'>Address</td>
-                            <td className='py-4'>{`${user.account.street} ${user.account.city}`}</td>
+                            <td className='py-4'>{`${user?.account?.street} ${user?.account?.city}`}</td>
                         </tr>
                     </tbody>
                 </Table>

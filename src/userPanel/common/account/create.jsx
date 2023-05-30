@@ -82,7 +82,6 @@ function CreateAccount() {
             })}
             onSubmit={async (values, { setSubmitting }) => {
                 try {
-                    console.log(values);
                     setLoading(true);
                     // eslint - disable - next - line
                     const response = await patchApi({
@@ -114,7 +113,6 @@ function CreateAccount() {
                     if (!err?.response) {
                         Notifications("No Server response", "error", "top-right");
                     } else {
-                        console.log(err);
                         Notifications("Account not created", "error", "top-right");
                     }
                 }

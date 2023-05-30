@@ -3,10 +3,12 @@ import { Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { addFormData } from "../../store/bookingFormSlice";
+import { addFormData, clearAddFormData } from "../../store/bookingFormSlice";
 import { unClickBtn } from "../../store/autoClickSlice";
 import jwtDecode from "jwt-decode";
 import "./common.css";
+import { logoutUser } from "../../store/userSlice";
+import { clearUserProfile } from "../../store/userProfileSlice";
 
 
 
@@ -32,13 +34,21 @@ function Header() {
   function logoutHandle() {
     localStorage.clear();
     dispatch(logout());
+    dispatch(logoutUser());
     dispatch(addFormData({}));
+    dispatch(clearUserProfile());
+
     dispatch(unClickBtn());
     navigate("/home")
   }
 
+
   return (
-    <div className="fixed-top" style={{ backgroundColor: "#ff534f" }}>
+    // F0E3CA
+    // D58BDD
+    // EAAC7F
+    //EEECDA
+    <div className="fixed-top" style={{ backgroundColor: '#EEECDA' }}>
       <Navbar className="navbar  h-100 py-4" expand="lg">
         <Container fluid>
           <Navbar.Brand href="#">
